@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans');
+
 $dark: #2f2f2f;
 $space: #000000;
 $light: #fcfcfc;
+$primaryFont: 'IBM Plex Sans', sans-serif;
+$secondaryFont: 'IBM Plex Mono', monospace;
 
 body {
     margin: 0;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: $secondaryFont;
 }
 
 #hero {
@@ -21,7 +25,7 @@ body {
 }
 
 #hero h1 {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: $primaryFont;
 }
 
 // TODO: Hack to hide underlines (minify html may fix)

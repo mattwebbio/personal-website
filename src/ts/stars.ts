@@ -60,6 +60,7 @@ class star {
 
     constructor() {
         this.reset();
+        this.z = Math.round((Math.random() * 100) - 65);
     }
     getLoc(): Array<number> {
         return [this.getX(), this.getY(), this.getZ()];
@@ -77,7 +78,6 @@ class star {
     reset(): void {
         this.x = Math.round(Math.random() * 10000)/100;
         this.y = Math.round(Math.random() * 10000)/100;
-        this.z = Math.round(Math.random() * -100);
     }
     move(): void {
         this.x += ((this.x - 50)/50)*this.XY_GAIN;
@@ -87,6 +87,7 @@ class star {
         if (this.y > (100 + this.MARGIN) || this.y < (0 - this.MARGIN) || 
         this.x > (100 + this.MARGIN) || this.x < (0 - this.MARGIN)){
             this.reset();
+            this.z = Math.round(Math.random() * -100);
         }
     }
 }

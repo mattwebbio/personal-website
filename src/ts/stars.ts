@@ -1,3 +1,18 @@
+// Configurables
+let SPEED: number = 1,
+    FPS: number = 30,
+    MARGIN: number = 10,
+    STAR_COLOR: string = "#dddddd",
+    STAR_SIZE: number = 4,
+    STAR_SIZE_GAIN: number = 0.75,
+    STAR_QTY_GAIN: number = 2.5;
+
+
+
+
+
+
+// Classes
 class stars {
     private starray: Array<star> = [];
     private size: number;
@@ -39,9 +54,9 @@ class star {
     private x: number;
     private y: number;
     private z: number;
-    private XY_INCREMENT: number = 0.5;
-    private Z_INCREMENT: number = 1.5;
-    private MARGIN: number = 10;
+    private XY_GAIN: number = 0.65 * SPEED;
+    private Z_INCREMENT: number = STAR_SIZE_GAIN * SPEED;
+    private MARGIN: number = MARGIN;
 
     constructor() {
         this.reset();
@@ -65,8 +80,8 @@ class star {
         this.z = Math.round(Math.random() * -100);
     }
     move(): void {
-        this.x += ((this.x - 50)/50) + this.XY_INCREMENT;
-        this.y += ((this.y - 50)/50) + this.XY_INCREMENT;
+        this.x += ((this.x - 50)/50)*this.XY_GAIN;
+        this.y += ((this.y - 50)/50)*this.XY_GAIN;
         this.z += this.Z_INCREMENT;
 
         if (this.y > (100 + this.MARGIN) || this.y < (0 - this.MARGIN) || 
@@ -76,40 +91,59 @@ class star {
     }
 }
 
+
+
+
+
+
+// Functions
 function render(container: HTMLCanvasElement, starfield: stars): void {
     let canvas = container.getContext("2d");
     canvas.clearRect(0, 0, container.width, container.height);
 
     for (let i = 0; i < starfield.getSize(); i++){
-        let x = starfield.getStarX(i, container.width),
-            y = starfield.getStarY(i, container.width),
-            z = Math.round(starfield.getStarZ(i)/100 * 5);
+        let z = starfield.getStarZ(i)/100 * STAR_SIZE,
+            x = starfield.getStarX(i, container.width) - (z/2),
+            y = starfield.getStarY(i, container.height) - (z/2);
 
-        if (x < container.width && y < container.height){
-            canvas.beginPath();
-            canvas.fillStyle="white";
-            canvas.fillRect(x, y, z, z);
-            canvas.stroke();
-        }
+        canvas.beginPath();
+        canvas.fillStyle=STAR_COLOR;
+        canvas.fillRect(x, y, z, z);
+        canvas.stroke();
 
         starfield.moveStar(i);
     }
 }
 
-function nextFrame() {
-    render(container, starfield);
-    return setTimeout(function(){window.requestAnimationFrame(nextFrame)}, 1000/30);
-}
-
-let starfield = new stars(500);
-let container = <HTMLCanvasElement> document.getElementById("starfield");
-
-window.onload = function() {
+function fitCanvas(): void {
     let heroHeight = document.getElementById("hero").clientHeight;
     // Match Hero size
     container.style.height = heroHeight + "px";
     container.width  = container.offsetWidth;
     container.height = container.offsetHeight;
+}
 
+function nextFrame() {
+    render(container, starfield);
+    return setTimeout(function(){window.requestAnimationFrame(nextFrame)}, 1000/FPS);
+}
+
+
+
+
+
+
+// Main
+let container = <HTMLCanvasElement> document.getElementById("starfield");
+let starfield: stars;
+
+window.onload = function() {
+    fitCanvas();
+    starfield = new stars(Math.round((container.width*container.height)
+        *0.0005*STAR_QTY_GAIN));
     window.requestAnimationFrame(nextFrame);
+}
+
+window.onresize = function() {
+    fitCanvas();
 }

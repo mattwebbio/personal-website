@@ -4,8 +4,16 @@
     <script src="js/stars.js"></script>
     <h1>Matt Webb</h1>
     <h5>Software Engineer</h5>
-{{ partial "parts/social.html" . }}
+    <div>
+        <a href="https://drive.google.com/open?id=1ri0nuorPDENqVjivBofkWVmShTMrhhvH" target="_blank">
+            <img src="https://img.shields.io/badge/-Resume-60D425.svg{{ $.Site.Params.sbadges }}" />
+        </a>
+        <a href="https://blog.mattwebb.io" target="_blank">
+            <img src="https://img.shields.io/badge/-Blog-FFC02E.svg{{ $.Site.Params.sbadges }}" />
+        </a>
+    </div>
+    {{ partial "parts/social.html" . }}
 </div>
 <br />
-<div style="text-align:center;">Under construction - come back soon, or visit my blog <a href="https://blog.mattwebb.io/">here</a> :)</div>
+<div style="text-align:center;">I'm working on building out this space for my resume; for now you can find that <a href="https://drive.google.com/open?id=1ri0nuorPDENqVjivBofkWVmShTMrhhvH">here</a> :)</div>
 {{ partial "parts/footer.html" . }}

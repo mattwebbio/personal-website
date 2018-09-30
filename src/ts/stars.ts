@@ -33,7 +33,6 @@ class stars {
         else this.starray[i].move();
     }
 
-
     getStarX(i: number, width: number): number {
         if (i > this.getSize() || i < 0) return -1000;
         else return Math.round(this.starray[i].getX() * width);

@@ -38,7 +38,7 @@ body {
 }
 
 #starfield {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 0px;
     left: 0px;
@@ -50,6 +50,13 @@ body {
     min-height: 100vh;
     display: block;
     position: relative;
+}
+
+#content {
+    padding-top: 0px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 // TODO: Fix overlap when window shrunk vertically

@@ -16,11 +16,17 @@ body {
     color: $light;
     text-align: center;
     width: 100vw;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#hero > * {
+#hero-content {
+    transform: perspective(1px) translateY(-6%);
+}
+
+#hero-content > * {
     margin: 0px;
 }
 

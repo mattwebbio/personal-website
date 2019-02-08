@@ -4,7 +4,7 @@ let SPEED: number = 1,
     MARGIN: number = 10,
     STAR_COLOR: string = "#dddddd",
     STAR_SIZE: number = 4,
-    STAR_SIZE_GAIN: number = 0.75,
+    STAR_SIZE_GAIN: number = 0.8,
     STAR_QTY_GAIN: number = 2.5;
 
 
